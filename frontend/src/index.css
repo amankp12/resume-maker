@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Page size and margins used when printing / saving as PDF */
+@page {
+  size: A4;
+  margin: 12mm;
+}
