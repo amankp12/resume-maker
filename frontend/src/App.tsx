@@ -40,7 +40,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-100">
       {/* Top bar: hidden when printing */}
       <header className="flex flex-wrap items-center justify-between gap-3 bg-white px-4 py-3 shadow print:hidden">
-        <h1 className="text-xl font-bold">My Resume Maker</h1>
+        <h1 className="text-xl font-bold">Resume Maker</h1>
         <div className="flex flex-wrap gap-2">
           <button className="rounded bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-500" onClick={() => window.print()}>
             Print / Save as PDF
