@@ -54,3 +54,5 @@ jobs:
       - name: Deploy with CDK
         working-directory: infra
         run: npx cdk deploy --require-approval never
+        env:
+          WRITE_KEY: ${{ secrets.WRITE_KEY }}
