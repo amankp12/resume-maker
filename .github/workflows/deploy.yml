@@ -41,6 +41,18 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+      - name: Show OIDC claims (debug)
+        run: |
+          TOKEN=$(curl -sS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r .value)
+          python3 - "$TOKEN" <<'PY'
+          import sys, base64, json
+          part = sys.argv[1].split('.')[1]
+          part += '=' * (-len(part) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(part))
+          for k in ('sub', 'aud', 'repository', 'ref', 'event_name'):
+              print(k, '=', claims.get(k))
+          PY
+
       - name: Log in to AWS (temporary credentials via OIDC)
         uses: aws-actions/configure-aws-credentials@v6
         with:
